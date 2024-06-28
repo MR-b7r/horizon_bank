@@ -328,3 +328,11 @@ declare interface getBankProps {
 declare interface getBankByAccountIdProps {
   accountId: string;
 }
+declare interface CustomProgressProps {
+  indicatorClassName?: string;
+}
+// Extend the original props custom props
+declare type ProgressProps = React.ComponentPropsWithoutRef<
+  typeof ProgressPrimitive.Root
+> &
+  CustomProgressProps;
