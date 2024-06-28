@@ -4,6 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BankTabItem } from "./BankTableItem";
 import BankInfo from "./BankInfo";
 import TransactionsTable from "./TransactionsTable";
+import { Pagination } from "./Pagination";
 
 const RecentTransactions = ({
   accounts,
@@ -11,12 +12,22 @@ const RecentTransactions = ({
   appwriteItemId,
   page = 1,
 }: RecentTransactionsProps) => {
+  const rowPerPage = 6;
+  const transLength = transactions.length;
+  const totalPages = Math.ceil(transLength / rowPerPage);
+
+  const indexOfLastTransaction = page * rowPerPage;
+  const indexOfFirstTransaction = indexOfLastTransaction - rowPerPage;
+  const currentTransaction = transactions.slice(
+    indexOfFirstTransaction,
+    indexOfLastTransaction
+  );
   return (
     <div className="recent-transactions">
       <header className="flex items-center justify-between">
         <h2 className="recent-transactions-label">Recent Transactions</h2>
         <Link
-          href={`/transactions-history/?id=${appwriteItemId}`}
+          href={`/transaction-history/?id=${appwriteItemId}`}
           className="view-all-btn"
         >
           View all
@@ -49,10 +60,14 @@ const RecentTransactions = ({
               type={"full"}
             />
 
-            <TransactionsTable transactions={transactions} />
+            <TransactionsTable transactions={currentTransaction} />
           </TabsContent>
         ))}
-        <TabsContent value="password">Change your password here.</TabsContent>
+        {totalPages > 1 && (
+          <div className="my-4 w-full">
+            <Pagination totalPages={totalPages} page={page} />
+          </div>
+        )}
       </Tabs>
     </div>
   );

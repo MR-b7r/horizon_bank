@@ -12,8 +12,8 @@ const MyBanks = async () => {
   const accountsData = accounts?.data;
 
   return (
-    <div className="transactions">
-      <div className="transactions-header">
+    <section className="flex flex-col">
+      <div className="my-banks">
         <HeaderBox
           title="My Bank Accounts"
           subtext="Effortlessly Mangage Your Banking Activities"
@@ -28,7 +28,7 @@ const MyBanks = async () => {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
