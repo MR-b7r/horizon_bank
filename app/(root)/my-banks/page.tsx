@@ -12,7 +12,7 @@ const MyBanks = async () => {
   const accountsData = accounts?.data;
 
   return (
-    <section className="flex flex-col">
+    <section className="flex">
       <div className="my-banks">
         <HeaderBox
           title="My Bank Accounts"
