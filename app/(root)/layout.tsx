@@ -2,8 +2,8 @@ import MobileNav from "@/components/MobileNav";
 import Sidebar from "@/components/Sidebar";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
 import Image from "next/image";
-import { redirect, useRouter } from "next/navigation";
-
+import { redirect } from "next/navigation";
+import React from "react";
 export default async function RootLayout({
   children,
 }: Readonly<{

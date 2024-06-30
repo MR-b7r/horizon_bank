@@ -27,7 +27,7 @@ export const Pagination = ({ page, totalPages }: PaginationProps) => {
       <Button
         size="lg"
         variant="ghost"
-        className="p-0 hover:bg-transparent"
+        className="px-3 py-2 hover:bg-blue-100"
         onClick={() => handleNavigation("prev")}
         disabled={Number(page) <= 1}
       >
@@ -46,7 +46,7 @@ export const Pagination = ({ page, totalPages }: PaginationProps) => {
       <Button
         size="lg"
         variant="ghost"
-        className="p-0 hover:bg-transparent"
+        className="px-3 py-2 hover:bg-blue-100"
         onClick={() => handleNavigation("next")}
         disabled={Number(page) >= totalPages}
       >

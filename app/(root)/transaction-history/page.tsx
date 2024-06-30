@@ -17,7 +17,6 @@ const TransactionHistory = async ({
   const accountsData = accounts?.data;
   const appwriteItemId = (id as string) || accountsData[0]?.appwriteItemId;
   const account = await getAccount({ appwriteItemId });
-  console.log(account);
   // For Pagination
   const rowPerPage = 6;
   const transLength = account?.transactions.length;

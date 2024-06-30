@@ -58,7 +58,7 @@ const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
       ) : variant === "ghost" ? (
         <Button
           onClick={() => open()}
-          className="plaidlink-ghost"
+          className="plaidlink-ghost duration-100 hover:bg-blue-50"
           variant={"ghost"}
         >
           <Image
@@ -67,7 +67,7 @@ const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
             width={24}
             height={24}
           />
-          <p className="hidden xl:block text-[16px] font-semibold text-black-2">
+          <p className="hidden text-[16px] font-semibold text-black-2 xl:block">
             Connect bank
           </p>
         </Button>
