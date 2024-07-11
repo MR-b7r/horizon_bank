@@ -464,4 +464,11 @@
   .sidebar-label {
     @apply text-16 font-semibold text-black-2 max-xl:hidden;
   }
+  /* SHADCN UI */
+  .shad-select-content {
+    @apply bg-gray-25 border-gray-200 text-black-2;
+  }
+  .shad-select-trigger {
+    @apply input-class;
+  }
 }

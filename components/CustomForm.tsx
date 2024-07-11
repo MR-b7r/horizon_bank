@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Control, FieldPath } from "react-hook-form";
 import { z } from "zod";
 import { authFormSchema } from "@/lib/utils";
+import { Select, SelectContent, SelectTrigger, SelectValue } from "./ui/select";
 
 const formSchema = authFormSchema("sign-up");
 
@@ -17,9 +18,34 @@ interface CustomFormProps {
   name: FieldPath<z.infer<typeof formSchema>>;
   label: string;
   placeholder: string;
+  children?: React.ReactNode;
 }
 
-const CustomForm = ({ control, name, label, placeholder }: CustomFormProps) => {
+const RenderInput = ({
+  field,
+  props,
+}: {
+  field: any;
+  props: CustomFormProps;
+}) => {
+  const { placeholder } = props;
+  return (
+    <FormControl>
+      <Select onValueChange={field.onChange} defaultValue={field.value}>
+        <FormControl>
+          <SelectTrigger className="shad-select-trigger">
+            <SelectValue placeholder={placeholder} />
+          </SelectTrigger>
+        </FormControl>
+        <SelectContent className="shad-select-content">
+          {props.children}
+        </SelectContent>
+      </Select>
+    </FormControl>
+  );
+};
+const CustomForm = (props: CustomFormProps) => {
+  const { control, name, label, placeholder } = props;
   return (
     <FormField
       control={control}
@@ -29,13 +55,17 @@ const CustomForm = ({ control, name, label, placeholder }: CustomFormProps) => {
           <FormLabel className="form-label">{label}</FormLabel>
           <div className="flex w-full flex-col">
             <FormControl>
-              <Input
-                placeholder={placeholder}
-                type={name === "password" ? "password" : "text"}
-                className="input-class"
-                {...field}
-              />
+              {name !== "state" && (
+                <Input
+                  placeholder={placeholder}
+                  type={name === "password" ? "password" : "text"}
+                  className="input-class"
+                  {...field}
+                />
+              )}
             </FormControl>
+
+            {name === "state" && <RenderInput field={field} props={props} />}
           </div>
           <FormMessage className="form-message mt-2" />
         </div>

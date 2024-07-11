@@ -15,6 +15,9 @@ import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { signIn, signUp } from "@/lib/actions/user.actions";
 import PlaidLink from "./PlaidLink";
+import toast from "react-hot-toast";
+import { SelectItem } from "./ui/select";
+import { stateAbbreviation } from "@/constants";
 
 const AuthForm = ({ type }: { type: string }) => {
   const [user, setUser] = useState(null);
@@ -66,6 +69,7 @@ const AuthForm = ({ type }: { type: string }) => {
       }
     } catch (error) {
       console.log(error);
+      toast.error("Email or Password is not correct");
     } finally {
       setIsLoading(false);
     }
@@ -140,8 +144,16 @@ const AuthForm = ({ type }: { type: string }) => {
                       control={form.control}
                       name="state"
                       label="State"
-                      placeholder="Example: EG"
-                    />
+                      placeholder="Example: NY"
+                    >
+                      {stateAbbreviation.map((state, i) => (
+                        <SelectItem key={i} value={state}>
+                          <div className="flex cursor-pointer justify-center ">
+                            <p>{state}</p>
+                          </div>
+                        </SelectItem>
+                      ))}
+                    </CustomForm>
                     <CustomForm
                       control={form.control}
                       name="postalCode"
